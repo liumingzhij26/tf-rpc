@@ -1,0 +1,17 @@
+{
+    "name": "tfrpc/config",
+    "description": "config",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "liumingzhi",
+            "email": "liumingzhij26@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Tfrpc\\Config\\": "src"
+        }
+    }
+}
