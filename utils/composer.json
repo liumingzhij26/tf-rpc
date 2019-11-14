@@ -10,7 +10,8 @@
     ],
     "require": {
         "friendsofphp/php-cs-fixer": "^2.9",
-        "phpunit/phpunit": "^7.0"
+        "phpunit/phpunit": "^7.0",
+        "ext-json": "*"
     },
     "autoload": {
         "files": [

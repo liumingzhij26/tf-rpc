@@ -8,7 +8,10 @@
             "email": "liumingzhij26@gmail.com"
         }
     ],
-    "require": {},
+    "require": {
+        "symfony/finder": "^4.2.8",
+        "psr/container": "^1.0"
+    },
     "autoload": {
         "psr-4": {
             "Tfrpc\\Config\\": "src"

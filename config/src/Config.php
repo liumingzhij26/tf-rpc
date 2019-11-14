@@ -15,10 +15,26 @@ declare(strict_types=1);
 
 namespace Tfrpc\Config;
 
+use Tfrpc\Utils\Arr;
 use Tfrpc\Contract\ConfigInterface;
+use Tfrpc\Utils\Collection;
 
 class Config implements ConfigInterface
 {
+
+    /**
+     * @var array
+     */
+    private $config = [];
+
+    /**
+     * Config constructor.
+     * @param array $configs
+     */
+    public function __construct(array $configs)
+    {
+        $this->config = $configs;
+    }
 
     /**
      * 获得配置文件，$key 值可以通过 . 连接符定位到下级数组，$default 则是当对应的值不存在时返回的默认值
@@ -30,7 +46,7 @@ class Config implements ConfigInterface
      */
     public function get(string $key, $default = null)
     {
-        // TODO: Implement get() method.
+        return config_get($this->config, $key, $default);
     }
 
     /**
@@ -38,12 +54,10 @@ class Config implements ConfigInterface
      *
      * @param string $key
      * @param $value
-     *
-     * @return mixed
      */
     public function set(string $key, $value)
     {
-        // TODO: Implement set() method.
+        config_set($this->config, $key, $value);
     }
 
     /**
@@ -55,6 +69,17 @@ class Config implements ConfigInterface
      */
     public function has(string $key)
     {
-        // TODO: Implement has() method.
+        return Arr::has($this->config, $key);
     }
+
+    /**
+     * 获得所有配置文件
+     *
+     * @return array
+     */
+    public function getConfigs()
+    {
+        return (new Collection($this->config))->all();
+    }
+    
 }

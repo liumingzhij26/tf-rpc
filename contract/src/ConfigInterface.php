@@ -33,8 +33,6 @@ interface ConfigInterface
      *
      * @param string $key
      * @param $value
-     *
-     * @return mixed
      */
     public function set(string $key, $value);
 
