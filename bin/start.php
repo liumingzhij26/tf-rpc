@@ -23,3 +23,6 @@ date_default_timezone_set('Asia/Shanghai');
 
 require APP_PATH . '/vendor/autoload.php';
 
+//echo APP_PATH;
+
+print_r([__DIR__,APP_PATH]);
