@@ -1,5 +1,5 @@
 {
-    "name": "tfrpc/Contract",
+    "name": "TfRpc/Contract",
     "description": "Contract",
     "license": "MIT",
     "authors": [
@@ -11,7 +11,7 @@
     "require": {},
     "autoload": {
         "psr-4": {
-            "Tfrpc\\Contract\\": "src"
+            "TfRpc\\Contract\\": "src"
         }
     }
 }

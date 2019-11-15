@@ -1,5 +1,5 @@
 {
-    "name": "tfrpc/config",
+    "name": "TfRpc/config",
     "description": "config",
     "license": "MIT",
     "authors": [
@@ -30,7 +30,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Tfrpc\\Config\\": "src/config/src"
+            "TfRpc\\Config\\": "src/config/src"
         }
     }
 }

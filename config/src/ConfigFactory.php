@@ -10,7 +10,7 @@ declare(strict_types=1);
  * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
  */
 
-namespace Tfrpc\Config;
+namespace TfRpc\Config;
 
 use Psr\Container\ContainerInterface;
 use Symfony\Component\Finder\Finder;
@@ -30,7 +30,7 @@ class ConfigFactory
     private function readConfig(string $configPath): array
     {
         $config = [];
-        if (file_exists($configPath) && is_readable($configPath)) {
+        if (isFile($configPath)) {
             $config = require $configPath;
         }
         return is_array($config) ? $config : [];

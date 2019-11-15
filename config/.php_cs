@@ -1,6 +1,6 @@
 <?php
 $header = <<<EOF
-This file is part of the tfrpc/config.
+This file is part of the TfRpc/config.
 
 (c) liumingzhi <liumingzhij26@gmail.com>
 

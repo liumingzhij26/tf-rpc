@@ -13,8 +13,8 @@ declare(strict_types=1);
  *
  **/
 
-use Tfrpc\Utils\Arr;
-use Tfrpc\Utils\Collection;
+use TfRpc\Utils\Arr;
+use TfRpc\Utils\Collection;
 
 if (!function_exists('value')) {
     /**
@@ -30,7 +30,7 @@ if (!function_exists('value')) {
     }
 }
 
-if (!function_exists('config_get')) {
+if (!function_exists('configGet')) {
     /**
      * Get an item from an array or object using "dot" notation.
      *
@@ -39,7 +39,7 @@ if (!function_exists('config_get')) {
      * @param null $default
      * @return array|mixed
      */
-    function config_get($target, $key, $default = null)
+    function configGet($target, $key, $default = null)
     {
         if (is_null($key)) {
             return $target;
@@ -55,7 +55,7 @@ if (!function_exists('config_get')) {
                 }
                 $result = [];
                 foreach ($target as $item) {
-                    $result[] = config_get($item, $key);
+                    $result[] = configGet($item, $key);
                 }
                 return in_array('*', $key) ? Arr::collapse($result) : $result;
             }
@@ -70,7 +70,7 @@ if (!function_exists('config_get')) {
         return $target;
     }
 }
-if (!function_exists('config_set')) {
+if (!function_exists('configSet')) {
     /**
      * Set an item on an array or object using dot notation.
      *
@@ -81,7 +81,7 @@ if (!function_exists('config_set')) {
      *
      * @return array
      */
-    function config_set(&$target, $key, $value, $overwrite = true)
+    function configSet(&$target, $key, $value, $overwrite = true)
     {
         $segments = is_array($key) ? $key : explode('.', $key);
         if (($segment = array_shift($segments)) === '*') {
@@ -90,7 +90,7 @@ if (!function_exists('config_set')) {
             }
             if ($segments) {
                 foreach ($target as &$inner) {
-                    config_set($inner, $segments, $value, $overwrite);
+                    configSet($inner, $segments, $value, $overwrite);
                 }
             } elseif ($overwrite) {
                 foreach ($target as &$inner) {
@@ -102,7 +102,7 @@ if (!function_exists('config_set')) {
                 if (!Arr::exists($target, $segment)) {
                     $target[$segment] = [];
                 }
-                config_set($target[$segment], $segments, $value, $overwrite);
+                configSet($target[$segment], $segments, $value, $overwrite);
             } elseif ($overwrite || !Arr::exists($target, $segment)) {
                 $target[$segment] = $value;
             }
@@ -111,14 +111,14 @@ if (!function_exists('config_set')) {
                 if (!isset($target->{$segment})) {
                     $target->{$segment} = [];
                 }
-                config_set($target->{$segment}, $segments, $value, $overwrite);
+                configSet($target->{$segment}, $segments, $value, $overwrite);
             } elseif ($overwrite || !isset($target->{$segment})) {
                 $target->{$segment} = $value;
             }
         } else {
             $target = [];
             if ($segments) {
-                config_set($target[$segment], $segments, $value, $overwrite);
+                configSet($target[$segment], $segments, $value, $overwrite);
             } elseif ($overwrite) {
                 $target[$segment] = $value;
             }
@@ -129,7 +129,7 @@ if (!function_exists('config_set')) {
 
 if (!function_exists('collect')) {
     /**
-     * Create a collection from the given value.
+     * 创建一个集合
      *
      * @param null|mixed $value
      * @return Collection
@@ -137,5 +137,18 @@ if (!function_exists('collect')) {
     function collect($value = null)
     {
         return new Collection($value);
+    }
+}
+
+if (!function_exists('isFile')) {
+    /**
+     * 判断文件是否可读
+     *
+     * @param $configPath
+     * @return bool
+     */
+    function isFile($configPath)
+    {
+        return file_exists($configPath) && is_readable($configPath);
     }
 }

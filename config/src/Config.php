@@ -13,11 +13,11 @@ declare(strict_types=1);
  *
  **/
 
-namespace Tfrpc\Config;
+namespace TfRpc\Config;
 
-use Tfrpc\Utils\Arr;
-use Tfrpc\Contract\ConfigInterface;
-use Tfrpc\Utils\Collection;
+use TfRpc\Utils\Arr;
+use TfRpc\Contract\ConfigInterface;
+use TfRpc\Utils\Collection;
 
 class Config implements ConfigInterface
 {
@@ -46,7 +46,7 @@ class Config implements ConfigInterface
      */
     public function get(string $key, $default = null)
     {
-        return config_get($this->config, $key, $default);
+        return configGet($this->config, $key, $default);
     }
 
     /**
@@ -54,10 +54,12 @@ class Config implements ConfigInterface
      *
      * @param string $key
      * @param $value
+     *
+     * @return void
      */
     public function set(string $key, $value)
     {
-        config_set($this->config, $key, $value);
+        configSet($this->config, $key, $value);
     }
 
     /**
@@ -81,5 +83,5 @@ class Config implements ConfigInterface
     {
         return (new Collection($this->config))->all();
     }
-    
+
 }

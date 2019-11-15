@@ -11,7 +11,7 @@
  *
  **/
 
-namespace Tfrpc\Config\Exception;
+namespace TfRpc\Config\Exception;
 
 use Exception;
 

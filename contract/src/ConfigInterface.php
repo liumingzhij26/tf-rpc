@@ -13,7 +13,7 @@ declare(strict_types=1);
  *
  **/
 
-namespace Tfrpc\Contract;
+namespace TfRpc\Contract;
 
 interface ConfigInterface
 {
@@ -33,6 +33,8 @@ interface ConfigInterface
      *
      * @param string $key
      * @param $value
+     *
+     * @return void
      */
     public function set(string $key, $value);
 
@@ -44,4 +46,11 @@ interface ConfigInterface
      * @return mixed
      */
     public function has(string $key);
+
+    /**
+     * 获得所有配置文件
+     *
+     * @return array
+     */
+    public function getConfigs();
 }

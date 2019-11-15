@@ -10,9 +10,9 @@ declare(strict_types=1);
  * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
  */
 
-namespace Tfrpc\Config;
+namespace TfRpc\Config;
 
-use Tfrpc\Utils\Composer;
+use TfRpc\Utils\Composer;
 use function class_exists;
 use function is_string;
 use function method_exists;
@@ -35,7 +35,7 @@ class ProviderConfig
     public static function load(): array
     {
         if (!static::$providerConfigs) {
-            $providers = Composer::getMergedExtra('tf_rpc')['config'] ?? [];
+            $providers = Composer::getMergedExtra('tf-rpc')['config'] ?? [];
             static::$providerConfigs = static::loadProviders($providers);
         }
         return static::$providerConfigs;
