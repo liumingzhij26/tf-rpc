@@ -1,5 +1,5 @@
 {
-    "name": "tf_rpc/utils",
+    "name": "tf-rpc/utils",
     "description": "thefair rpc server",
     "license": "MIT",
     "authors": [

@@ -12,9 +12,7 @@
     ],
     "require": {
         "symfony/finder": "^4.2.8",
-        "psr/container": "^1.0",
-        "tf-rpc/utils": "*",
-        "tf-rpc/contract": "*"
+        "psr/container": "^1.0"
     },
     "autoload": {
         "psr-4": {

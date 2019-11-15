@@ -1,6 +1,6 @@
 {
-    "name": "tf-rpc/Contract",
-    "description": "Contract",
+    "name": "tf-rpc/constants",
+    "description": "constants",
     "license": "MIT",
     "authors": [
         {
@@ -11,7 +11,7 @@
     "require": {},
     "autoload": {
         "psr-4": {
-            "TfRpc\\Contract\\": "src"
+            "TfRpc\\Constants\\": "src"
         }
     }
 }
