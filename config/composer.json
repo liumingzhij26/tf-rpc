@@ -1,7 +1,9 @@
 {
-    "name": "TfRpc/config",
+    "name": "tf-rpc/config",
     "description": "config",
+    "type": "library",
     "license": "MIT",
+    "minimum-stability": "dev",
     "authors": [
         {
             "name": "liumingzhi",
