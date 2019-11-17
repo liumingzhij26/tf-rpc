@@ -35,7 +35,7 @@ class ProviderConfig
     public static function load(): array
     {
         if (!static::$providerConfigs) {
-            $providers = Composer::getMergedExtra('tf-rpc')['config'] ?? [];
+            $providers = Composer::getMergedExtra('tf-rpc')['providers'] ?? [];
             static::$providerConfigs = static::loadProviders($providers);
         }
         return static::$providerConfigs;
@@ -51,6 +51,7 @@ class ProviderConfig
         $providerConfigs = [];
         foreach ($providers as $provider) {
             if (is_string($provider) && class_exists($provider) && method_exists($provider, '__invoke')) {
+                print_r([$provider,'loadProviders']);
                 $providerConfigs[] = (new $provider())();
             }
         }

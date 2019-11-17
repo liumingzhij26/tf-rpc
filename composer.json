@@ -1,13 +1,4 @@
 {
-    "name": "tf-rpc/config",
-    "description": "config",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "liumingzhi",
-            "email": "liumingzhij26@gmail.com"
-        }
-    ],
     "require": {
         "psr/container": "^1.0",
         "psr/container": "^1.0",
@@ -18,7 +9,10 @@
         "psr/simple-cache": "^1.0",
         "ext-json": "*",
         "ext-swoole": ">=4.4",
-        "symfony/finder": "^4.2.8"
+        "symfony/finder": "^4.2.8",
+        "tf-rpc/config": "dev-dev",
+        "tf-rpc/utils": "dev-dev",
+        "tf-rpc/contract": "dev-dev"
     },
     "require-dev": {
         "swoft/swoole-ide-helper": "^4.2",
@@ -28,9 +22,18 @@
         "doctrine/common": "^2.9",
         "phpstan/phpstan": "^0.11.2"
     },
-    "autoload": {
-        "psr-4": {
-            "TfRpc\\Config\\": "src/config/src"
+    "repositories": {
+        "tf-rpc/config": {
+            "type": "path",
+            "url": "/Users/liumingzhi/lmz/tf-rpc/config"
+        },
+        "tf-rpc/utils": {
+            "type": "path",
+            "url": "/Users/liumingzhi/lmz/tf-rpc/utils"
+        },
+        "tf-rpc/contract": {
+            "type": "path",
+            "url": "/Users/liumingzhi/lmz/tf-rpc/contract"
         }
     }
 }

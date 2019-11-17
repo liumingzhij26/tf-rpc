@@ -83,5 +83,4 @@ class Config implements ConfigInterface
     {
         return (new Collection($this->config))->all();
     }
-
 }

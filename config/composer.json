@@ -19,6 +19,13 @@
             "TfRpc\\Config\\": "src"
         }
     },
+    "extra": {
+        "tf-rpc": {
+            "providers": [
+                "TfRpc\\Config\\ConfigBean"
+            ]
+        }
+    },
     "repositories": {
         "tf-rpc": {
             "type": "path",

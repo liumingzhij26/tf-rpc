@@ -16,7 +16,7 @@ namespace TfRpc\Config;
 
 use TfRpc\Contract\ConfigInterface;
 
-class ConfigBean
+class ConfigProvider
 {
     public function __invoke()
     {

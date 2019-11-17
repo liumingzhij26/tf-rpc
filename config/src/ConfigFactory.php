@@ -20,6 +20,7 @@ class ConfigFactory
     public function __invoke(ContainerInterface $container)
     {
         $configPath = APP_PATH . '/config/';
+        var_dump($configPath);
         $config = $this->readConfig($configPath . 'config.php');
         $serverConfig = $this->readConfig($configPath . 'server.php');
         $autoloadConfig = $this->readPaths([APP_PATH . '/config/autoload']);
@@ -27,6 +28,13 @@ class ConfigFactory
         return new Config($merged);
     }
 
+    /**
+     * 读取配置文件
+     *
+     * @param string $configPath
+     *
+     * @return array
+     */
     private function readConfig(string $configPath): array
     {
         $config = [];
@@ -36,6 +44,14 @@ class ConfigFactory
         return is_array($config) ? $config : [];
     }
 
+    /**
+     *
+     * 读取多个目录下的 php 文件
+     *
+     * @param array $paths
+     *
+     * @return array
+     */
     private function readPaths(array $paths)
     {
         $configs = [];
