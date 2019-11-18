@@ -6,7 +6,7 @@ declare(strict_types=1);
  *
  **************************************************************************
  *
- * @file ConfigBean.php
+ * @file ConfigProvider.php
  * @author liumingzhi(liumingzhij26@gmail.com)
  * @date 2019-11-15 11:14:00
  *

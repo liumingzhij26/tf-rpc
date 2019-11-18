@@ -66,14 +66,7 @@ $configs = [
 //print_r([$config->has('default')]);
 
 
-$provider = (new \TfRpc\Config\ConfigFactory());
+$config = (new \TfRpc\Config\ConfigFactory());
 
-print_r($provider());
-$configFromProviders = [];
-if (class_exists(ProviderConfig::class)) {
-    $configFromProviders = ProviderConfig::load();
-}
-
-print_r($configFromProviders);
-
-print_r([__DIR__, APP_PATH]);
+print_r($config());
+print_r($config()->get('api.baidu'));

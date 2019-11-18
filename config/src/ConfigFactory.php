@@ -19,6 +19,9 @@ use TfRpc\Utils\Str;
 
 class ConfigFactory
 {
+    /**
+     * @return Config
+     */
     public function __invoke()
     {
         if (file_exists(APP_PATH . '/.env')) {
@@ -63,10 +66,7 @@ class ConfigFactory
         $configs = [];
         $finder = new Finder();
         $phase = env('PHASE');//开发环境，如 dev
-        $finder->files()->in($paths);
-        if ($phase) {//如果指定了环境变量，就排除环境变量的配置扫描
-            $finder->files()->in($paths)->exclude($phase);
-        }
+        $finder->files()->in($paths)->exclude($phase);//如果指定了环境变量，就排除环境变量的配置扫描
         foreach ($finder as $file) {
             $path = $file->getRelativePath() . '/' . $file->getBasename('.php');
             $filePath = $file->getRealPath();
@@ -76,8 +76,7 @@ class ConfigFactory
                     $filePath = $tmpPath;
                 }
             }
-            $arrConfig = Str::pathToArray(mb_strtolower($path), require $filePath);
-            $configs[] = $arrConfig;
+            $configs[] = Str::pathToArray(mb_strtolower($path), require $filePath);
         }
         return $configs;
     }

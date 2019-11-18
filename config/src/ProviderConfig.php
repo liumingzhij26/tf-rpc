@@ -54,7 +54,6 @@ class ProviderConfig
                 $providerConfigs[] = (new $provider())();
             }
         }
-
         return static::merge(...$providerConfigs);
     }
 
