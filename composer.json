@@ -12,7 +12,9 @@
         "symfony/finder": "^4.2.8",
         "tf-rpc/config": "dev-dev",
         "tf-rpc/utils": "dev-dev",
-        "tf-rpc/contract": "dev-dev"
+        "tf-rpc/contract": "dev-dev",
+        "ext-mbstring": "*",
+        "vlucas/phpdotenv": "^3.6"
     },
     "require-dev": {
         "swoft/swoole-ide-helper": "^4.2",

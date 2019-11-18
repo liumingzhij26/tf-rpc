@@ -12,18 +12,22 @@ declare(strict_types=1);
 
 namespace TfRpc\Config;
 
+use Dotenv\Dotenv;
 use Psr\Container\ContainerInterface;
 use Symfony\Component\Finder\Finder;
+use TfRpc\Utils\Str;
 
 class ConfigFactory
 {
-    public function __invoke(ContainerInterface $container)
+    public function __invoke()
     {
+        if (file_exists(APP_PATH . '/.env')) {
+            Dotenv::create([APP_PATH])->load();
+        }
         $configPath = APP_PATH . '/config/';
-        var_dump($configPath);
         $config = $this->readConfig($configPath . 'config.php');
         $serverConfig = $this->readConfig($configPath . 'server.php');
-        $autoloadConfig = $this->readPaths([APP_PATH . '/config/autoload']);
+        $autoloadConfig = $this->readPaths([APP_PATH . '/bin/config/']);
         $merged = array_merge_recursive(ProviderConfig::load(), $serverConfig, $config, ...$autoloadConfig);
         return new Config($merged);
     }
@@ -48,6 +52,8 @@ class ConfigFactory
      *
      * 读取多个目录下的 php 文件
      *
+     * api/wechat/thefair/english/Reading.php => dev/api/wechat/thefair/english/Reading.php
+     *
      * @param array $paths
      *
      * @return array
@@ -56,11 +62,22 @@ class ConfigFactory
     {
         $configs = [];
         $finder = new Finder();
-        $finder->files()->in($paths)->name('*.php');
+        $phase = env('PHASE');//开发环境，如 dev
+        $finder->files()->in($paths);
+        if ($phase) {//如果指定了环境变量，就排除环境变量的配置扫描
+            $finder->files()->in($paths)->exclude($phase);
+        }
         foreach ($finder as $file) {
-            $configs[] = [
-                $file->getBasename('.php') => require $file->getRealPath(),
-            ];
+            $path = $file->getRelativePath() . '/' . $file->getBasename('.php');
+            $filePath = $file->getRealPath();
+            if ($phase) {
+                $tmpPath = str_replace($file->getRelativePathname(), $phase . '/' . $file->getRelativePathname(), $file->getPathname());
+                if (isFile($tmpPath)) {//如果开发环境中指定了文件路径，就替换读取文件
+                    $filePath = $tmpPath;
+                }
+            }
+            $arrConfig = Str::pathToArray(mb_strtolower($path), require $filePath);
+            $configs[] = $arrConfig;
         }
         return $configs;
     }

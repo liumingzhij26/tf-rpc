@@ -51,7 +51,6 @@ class ProviderConfig
         $providerConfigs = [];
         foreach ($providers as $provider) {
             if (is_string($provider) && class_exists($provider) && method_exists($provider, '__invoke')) {
-                print_r([$provider,'loadProviders']);
                 $providerConfigs[] = (new $provider())();
             }
         }
